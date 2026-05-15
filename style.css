@@ -24,8 +24,8 @@
     --accent-color: var(--aws-orange);
 
     /* Typography Scale - 1920x1080 최적화 */
-    --font-size-main: clamp(4rem, 9vw, 10rem);     /* ~144px @1920w */
-    --font-size-sub: clamp(1.75rem, 3vw, 3.5rem);  /* ~48px @1920w */
+    --font-size-main: clamp(3rem, 6vw, 6.5rem);    /* ~104px @1920w */
+    --font-size-sub: clamp(2rem, 3.5vw, 4rem);     /* ~64px @1920w */
 
     /* Font Weights */
     --weight-main: 800;
@@ -131,10 +131,44 @@ body {
 }
 
 /* -----------------------------------------------------------------------------
+   4-1. Brand Header - AWS Summit 로고와 행사명 (카드 상단 오버레이)
+   ----------------------------------------------------------------------------- */
+.brand-header {
+    position: fixed;
+    top: clamp(1.5rem, 3vh, 3rem);
+    left: clamp(2rem, 5vw, 6rem);
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 1.2vw, 1.5rem);
+    z-index: 10;
+    pointer-events: none; /* 마우스 이벤트 방해 방지 */
+}
+
+.brand-header__logo {
+    width: clamp(64px, 5.5vw, 110px);
+    height: auto;
+    display: block;
+    /* 페이드 전환 영향 안받게 카드 외부에 배치되어 있어 추가 처리 불필요 */
+}
+
+.brand-header__title {
+    font-size: clamp(0.875rem, 1.2vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    /* 좌측 구분선 */
+    padding-left: clamp(0.75rem, 1.2vw, 1.5rem);
+    border-left: 2px solid var(--aws-orange);
+    line-height: 1.2;
+}
+
+/* -----------------------------------------------------------------------------
    5. Typography Card Inner - 텍스트 콘텐츠 정렬
    ----------------------------------------------------------------------------- */
 .typography-card__inner {
     position: relative;
+    width: var(--content-max-width);
     max-width: var(--content-max-width);
     display: flex;
     flex-direction: column;
@@ -199,8 +233,8 @@ body {
    ----------------------------------------------------------------------------- */
 @media (min-width: 1920px) and (min-height: 1080px) {
     :root {
-        --font-size-main: 10rem;     /* 160px */
-        --font-size-sub: 3.25rem;    /* 52px */
+        --font-size-main: 5.5rem;    /* 88px */
+        --font-size-sub: 4rem;       /* 64px */
         --content-gap: 2.5rem;
     }
 }
@@ -210,8 +244,8 @@ body {
    ----------------------------------------------------------------------------- */
 @media (max-width: 1279px) {
     :root {
-        --font-size-main: clamp(3rem, 8vw, 6rem);
-        --font-size-sub: clamp(1.25rem, 2.5vw, 2rem);
+        --font-size-main: clamp(2rem, 5vw, 4rem);
+        --font-size-sub: clamp(1.5rem, 3vw, 2.5rem);
     }
 
     .typography-card__sub {
