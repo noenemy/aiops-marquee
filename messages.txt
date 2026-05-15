@@ -1,11 +1,11 @@
 "클라우드 운영, AI로 가뿐하게"
-Make Cloud Operations Efforless!
+Make Cloud Operations Effortless!
 
 AI가 클라우드를 운영하는 시대
 지금 바로 체험하세요
 
 장애 예방부터 비용 절감까지
-AI Agent가 운영을 바꿉니다
+AI Agent가 클라우드 운영을 바꿉니다
 
 "서버 하나 만들어줘" 한마디면 끝
 AI 클라우드 운영의 미래를 만나보세요
@@ -17,7 +17,7 @@ Agentic AIOps 라이브 데모 진행 중
 여러분의 운영 업무를 어떻게 바꾸는지 직접 확인하세요
 
 코드 배포, 비용 관리, 장애 대응
-AI가 24시간 지켜봅니다
+AI Agent가 24시간 지켜봅니다
 
 AWS + AI Agent = 클라우드 운영 자동화의 새로운 기준
 지금 바로 체험하세요
@@ -33,9 +33,6 @@ Amazon Bedrock + AgentCore
 
 프로덕션 레벨 AI 운영 자동화
 Strands Agent SDK로 간단히 만들기
-
-Human-in-the-Loop
-AI가 추천하고, 사람이 승인합니다
 
 학습하는 AI CloudOps
 Knowledge Base가 쌓일수록 AI가 똑똑해집니다
@@ -62,7 +59,7 @@ AI CloudOps 부스에서 답을 찾으세요
 AI Agent가 찾아내고 원클릭으로 절감합니다
 
 장애 대응 시간, 수시간에서 수십 분으로
-AI Agent가 바꿉니다
+AI Agent가 클라우드 운영 방식을 바꿉니다
 
 RI·SP 최적 구매 전략
 AI Agent가 설계하고 시뮬레이션으로 비교해줍니다

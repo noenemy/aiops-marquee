@@ -24,8 +24,8 @@
     --accent-color: var(--aws-orange);
 
     /* Typography Scale - 1920x1080 최적화 */
-    --font-size-main: clamp(3rem, 6vw, 6.5rem);    /* ~104px @1920w */
-    --font-size-sub: clamp(2rem, 3.5vw, 4rem);     /* ~64px @1920w */
+    --font-size-main: clamp(5.5rem, 11vw, 12rem);  /* ~192px @1920w */
+    --font-size-sub: clamp(3rem, 5.5vw, 6rem);     /* ~96px @1920w */
 
     /* Font Weights */
     --weight-main: 800;
@@ -233,8 +233,8 @@ body {
    ----------------------------------------------------------------------------- */
 @media (min-width: 1920px) and (min-height: 1080px) {
     :root {
-        --font-size-main: 5.5rem;    /* 88px */
-        --font-size-sub: 4rem;       /* 64px */
+        --font-size-main: 10rem;     /* 160px */
+        --font-size-sub: 6rem;       /* 96px */
         --content-gap: 2.5rem;
     }
 }
@@ -244,8 +244,8 @@ body {
    ----------------------------------------------------------------------------- */
 @media (max-width: 1279px) {
     :root {
-        --font-size-main: clamp(2rem, 5vw, 4rem);
-        --font-size-sub: clamp(1.5rem, 3vw, 2.5rem);
+        --font-size-main: clamp(4rem, 9vw, 8rem);
+        --font-size-sub: clamp(2.5rem, 5vw, 4.5rem);
     }
 
     .typography-card__sub {
