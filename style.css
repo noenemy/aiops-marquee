@@ -1,0 +1,220 @@
+/* =============================================================================
+   AIOps Typography Rotation - Stylesheet
+   AWS Summit 데모 부스 디스플레이용 풀스크린 타이포그래피 로테이션
+   Target Resolution: 1920x1080 (Full HD TV)
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   1. CSS Custom Properties (Design Tokens)
+   카드별 동적 스타일 변경을 위한 CSS 변수
+   ----------------------------------------------------------------------------- */
+:root {
+    /* AWS Brand Colors */
+    --aws-orange: #FF9900;
+    --aws-dark-blue: #232F3E;
+    --aws-darker: #1a2332;
+    --aws-deepest: #0d1117;
+
+    /* Text Colors (High Contrast on Dark Background) */
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.75);
+
+    /* Card-Level Variables (전환 시 JS로 갱신) */
+    --bg-gradient: linear-gradient(135deg, var(--aws-dark-blue) 0%, var(--aws-darker) 100%);
+    --accent-color: var(--aws-orange);
+
+    /* Typography Scale - 1920x1080 최적화 */
+    --font-size-main: clamp(4rem, 9vw, 10rem);     /* ~144px @1920w */
+    --font-size-sub: clamp(1.75rem, 3vw, 3.5rem);  /* ~48px @1920w */
+
+    /* Font Weights */
+    --weight-main: 800;
+    --weight-sub: 400;
+
+    /* Layout */
+    --content-max-width: 90vw;
+    --content-gap: clamp(1.5rem, 3vh, 3rem);
+
+    /* Transition Timings (총 1초 이내: fadeOut 500ms + fadeIn 500ms) */
+    --fade-duration: 500ms;
+    --fade-easing: cubic-bezier(0.4, 0.0, 0.2, 1);
+
+    /* System Sans-Serif Font Stack (오프라인 동작 보장) */
+    --font-stack-sans:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", "Apple SD Gothic Neo", "Noto Sans KR",
+        "Malgun Gothic", "맑은 고딕", Arial, sans-serif;
+}
+
+/* -----------------------------------------------------------------------------
+   2. Reset & Base
+   ----------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--aws-deepest);
+    color: var(--text-primary);
+    font-family: var(--font-stack-sans);
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* 디스플레이 모드 - 텍스트 선택/커서 숨김 */
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: none;
+}
+
+/* -----------------------------------------------------------------------------
+   3. App Container - Full Screen Layout
+   ----------------------------------------------------------------------------- */
+.app {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    overflow: hidden;
+}
+
+/* -----------------------------------------------------------------------------
+   4. Typography Card - 카드 컨테이너 (배경 + 페이드 전환)
+   ----------------------------------------------------------------------------- */
+.typography-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(2rem, 5vh, 5rem) clamp(2rem, 5vw, 6rem);
+
+    /* 카드별 동적 배경 (CSS 변수 기반) */
+    background: var(--bg-gradient);
+
+    /* 페이드 전환 - opacity로 부드러운 페이드인/아웃 */
+    opacity: 1;
+    transition: opacity var(--fade-duration) var(--fade-easing),
+                background var(--fade-duration) var(--fade-easing);
+    will-change: opacity;
+}
+
+/* 페이드아웃 상태 (JS에서 토글) */
+.typography-card.is-fading {
+    opacity: 0;
+}
+
+/* 강조 색상 액센트 라인 (좌측 또는 상단) */
+.typography-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(8px, 0.6vw, 12px);
+    height: clamp(40vh, 50vh, 60vh);
+    background-color: var(--accent-color);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 40px rgba(255, 153, 0, 0.4);
+}
+
+/* -----------------------------------------------------------------------------
+   5. Typography Card Inner - 텍스트 콘텐츠 정렬
+   ----------------------------------------------------------------------------- */
+.typography-card__inner {
+    position: relative;
+    max-width: var(--content-max-width);
+    display: flex;
+    flex-direction: column;
+    gap: var(--content-gap);
+    text-align: left;
+    z-index: 1;
+}
+
+/* -----------------------------------------------------------------------------
+   6. Main Text - 메인 헤드라인 (대형, 굵음, 고대비)
+   ----------------------------------------------------------------------------- */
+.typography-card__main {
+    font-size: var(--font-size-main);
+    font-weight: var(--weight-main);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    /* 강조 색상 언더라인 효과 */
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* 메인 텍스트의 일부 강조 (선택적 사용) */
+.typography-card__main em,
+.typography-card__main strong {
+    color: var(--accent-color);
+    font-style: normal;
+    font-weight: inherit;
+}
+
+/* -----------------------------------------------------------------------------
+   7. Sub Text - 서브 텍스트 (중형, 가벼운 두께, 보조 색상)
+   ----------------------------------------------------------------------------- */
+.typography-card__sub {
+    font-size: var(--font-size-sub);
+    font-weight: var(--weight-sub);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--text-secondary);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    max-width: 80%;
+}
+
+/* 서브 텍스트가 비어있을 때 공간 차지 방지 */
+.typography-card__sub:empty {
+    display: none;
+}
+
+/* -----------------------------------------------------------------------------
+   8. Reduced Motion - 접근성 (애니메이션 최소화 환경)
+   ----------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .typography-card {
+        transition-duration: 1ms;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+   9. 1920x1080 정확한 해상도 최적화
+   ----------------------------------------------------------------------------- */
+@media (min-width: 1920px) and (min-height: 1080px) {
+    :root {
+        --font-size-main: 10rem;     /* 160px */
+        --font-size-sub: 3.25rem;    /* 52px */
+        --content-gap: 2.5rem;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+   10. 작은 화면 폴백 (개발 시 미리보기용)
+   ----------------------------------------------------------------------------- */
+@media (max-width: 1279px) {
+    :root {
+        --font-size-main: clamp(3rem, 8vw, 6rem);
+        --font-size-sub: clamp(1.25rem, 2.5vw, 2rem);
+    }
+
+    .typography-card__sub {
+        max-width: 100%;
+    }
+}
